@@ -13,6 +13,11 @@ stages:
 variables:
   EXPORT_NAME: project-v2
 
+before-script:
+  # Remove lfs hook (https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2245)
+  - rm .git/hooks/post-checkout || true
+
+
 # linux:
 #   stage: export
 #   script:
