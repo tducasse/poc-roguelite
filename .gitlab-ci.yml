@@ -91,6 +91,7 @@ pages:
     - git fetch
     - git checkout pages
     - rm -f *.md
+    - mkdir public
     - mv build/web/** ./public
   artifacts:
     paths:
