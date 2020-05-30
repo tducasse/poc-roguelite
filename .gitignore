@@ -40,7 +40,8 @@ Thumbs.db
 ##########################
 .import/
 export.cfg
-export_presets.cfg
+# needs to be committed for CI
+# export_presets.cfg
 
 # Project-specific ignores #
 ############################

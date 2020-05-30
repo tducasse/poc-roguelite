@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Projectv 2"
+run/main_scene="res://TestScene.tscn"
 config/icon="res://icon.png"
 
 [rendering]
