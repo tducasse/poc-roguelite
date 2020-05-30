@@ -13,10 +13,6 @@ stages:
 variables:
   EXPORT_NAME: project-v2
 
-before-script:
-  # Remove lfs hook (https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2245)
-  - rm .git/hooks/post-checkout || true
-
 
 # linux:
 #   stage: export
@@ -32,6 +28,9 @@ windows:
   only:
     - master
   stage: export
+  before-script:
+    # Remove lfs hook (https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2245)
+    - rm .git/hooks/post-checkout || true
   script:
     - mkdir -v -p build/windows
     - godot -v --export "Windows Desktop" build/windows/$EXPORT_NAME.exe
@@ -54,6 +53,9 @@ web:
   only:
     - master
   stage: export
+  before-script:
+    # Remove lfs hook (https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2245)
+    - rm .git/hooks/post-checkout || true
   script:
     - mkdir -v -p build/web
     - godot -v --export "HTML5" build/web/index.html
@@ -87,6 +89,9 @@ pages:
   stage: deploy
   dependencies:
     - web
+  before-script:
+    # Remove lfs hook (https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/2245)
+    - rm .git/hooks/post-checkout || true
   script:
     # This ensures the `pages` branch is available.
     - git fetch
