@@ -17,7 +17,6 @@ variables:
 #   stage: export
 #   script:
 #     - mkdir -v -p build/linux
-#     - cd $EXPORT_NAME
 #     - godot -v --export "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
 #   artifacts:
 #     name: $EXPORT_NAME-$CI_JOB_NAME
@@ -25,10 +24,11 @@ variables:
 #       - build/linux
 
 windows:
+  only:
+    - master
   stage: export
   script:
     - mkdir -v -p build/windows
-    - cd $EXPORT_NAME
     - godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
   artifacts:
     name: $EXPORT_NAME-$CI_JOB_NAME
@@ -39,7 +39,6 @@ windows:
 #   stage: export
 #   script:
 #     - mkdir -v -p build/mac
-#     - cd $EXPORT_NAME
 #     - godot -v --export "Mac OSX" ../build/mac/$EXPORT_NAME.zip
 #   artifacts:
 #     name: $EXPORT_NAME-$CI_JOB_NAME
@@ -47,10 +46,11 @@ windows:
 #       - build/mac
 
 web:
+  only:
+    - master
   stage: export
   script:
     - mkdir -v -p build/web
-    - cd $EXPORT_NAME
     - godot -v --export "HTML5" ../build/web/index.html
   artifacts:
     name: $EXPORT_NAME-$CI_JOB_NAME
@@ -77,6 +77,8 @@ web:
 
 # GitLab Pages Deploy
 pages:
+  only:
+    - master
   stage: deploy
   dependencies:
     - web
