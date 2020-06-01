@@ -4,11 +4,11 @@
 [ext_resource path="res://walls.png" type="Texture" id=2]
 
 [sub_resource type="TileSet" id=1]
-0/name = "Sprite-0013.png 0"
+0/name = "ground.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 16, 16 )
+0/region = Rect2( 0, 0, 32, 32 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -472,7 +472,7 @@ points = PoolVector2Array( 22, 0, 22, 22, 32, 22, 32, 32, 32, 32, 10, 32, 10, 0 
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
-cell_size = Vector2( 16, 16 )
+cell_size = Vector2( 32, 32 )
 format = 1
 
 [node name="Walls" type="TileMap" parent="."]
