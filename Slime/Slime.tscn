@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Stats/Stats.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Slime/Slime.png" type="Texture" id=2]
 [ext_resource path="res://Collisions/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Slime/Slime.gd" type="Script" id=4]
+[ext_resource path="res://Collisions/Hitbox.tscn" type="PackedScene" id=5]
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
@@ -26,9 +27,11 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=10]
-radius = 7.0
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id=9]
+
+[sub_resource type="CircleShape2D" id=11]
 
 [node name="Slime" type="KinematicBody2D"]
 collision_layer = 4
@@ -37,7 +40,7 @@ script = ExtResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "Animation"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -53,7 +56,16 @@ collision_layer = 16
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 9 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 5 )]
+visible = false
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 11 )
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]
+
+[editable path="Hitbox"]

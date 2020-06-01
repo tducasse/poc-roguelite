@@ -70,26 +70,26 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "IdleUp"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=10]
-blend_point_0/node = SubResource( 13 )
+blend_point_0/node = SubResource( 6 )
 blend_point_0/pos = Vector2( -1.1, 0 )
-blend_point_1/node = SubResource( 14 )
+blend_point_1/node = SubResource( 7 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 15 )
+blend_point_2/node = SubResource( 8 )
 blend_point_2/pos = Vector2( 1.1, 0 )
-blend_point_3/node = SubResource( 16 )
+blend_point_3/node = SubResource( 9 )
 blend_point_3/pos = Vector2( 0, -1 )
 min_space = Vector2( -1.1, -1 )
 max_space = Vector2( 1.1, 1 )
@@ -103,6 +103,7 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
