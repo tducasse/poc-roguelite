@@ -1,5 +1,8 @@
 # Project v2
 
-Avant de cloner :
+## Avant de cloner :
 - installer `git-lfs`
-- dans un termanial : `git lfs install`
+- dans un terminal : `git lfs install`
+
+## Gitlab pages
+https://aldevs.gitlab.io/gamedev/projectv2
