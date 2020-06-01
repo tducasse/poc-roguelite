@@ -12,7 +12,7 @@ func drop_items():
 	var chance = randi() % 100
 
 	for item in dropTable.keys():
-		if dropTable.get(item) < chance:
+		if chance < dropTable.get(item):
 			var itemInstance = item.instance()
 			get_parent().add_child(itemInstance)
 			itemInstance.position = position
