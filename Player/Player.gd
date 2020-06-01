@@ -43,4 +43,3 @@ func _physics_process(delta):
 	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	velocity = move_and_slide(velocity)
 	
-	

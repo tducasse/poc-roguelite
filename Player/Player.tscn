@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/player-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Collisions/Hitbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 5 )
@@ -125,3 +126,7 @@ tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 12 )
 parameters/Idle/blend_position = Vector2( -0.187051, 0.0685714 )
+
+[node name="DebugHitbox" parent="." instance=ExtResource( 3 )]
+collision_mask = 16
+damage = 10
