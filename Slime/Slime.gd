@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 
-const LASER_SWORD = preload("res://Items/Weapons/LaserSword/LaserSword.tscn")
-var dropTable = {LASER_SWORD: 50}
+const RING = preload("res://Items/Weapons/Ring/Ring.tscn")
+var dropTable = {RING: 50}
 
 
 onready var stats = $Stats
