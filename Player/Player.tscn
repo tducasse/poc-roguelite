@@ -5,7 +5,7 @@
 [ext_resource path="res://Collisions/Hitbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 5 )
+extents = Vector2( 8, 2 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "IdleDown"
@@ -104,7 +104,6 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [sub_resource type="CircleShape2D" id=13]
-radius = 34.9614
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -112,9 +111,8 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -11 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
-hframes = 24
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -136,6 +134,7 @@ collision_mask = 16
 damage = 10
 
 [node name="CollisionShape2D" parent="DebugHitbox" index="0"]
+position = Vector2( 0, -9 )
 shape = SubResource( 13 )
 
 [editable path="DebugHitbox"]
