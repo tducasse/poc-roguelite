@@ -29,7 +29,9 @@ radius = 14.6256
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -16, 0 )
 texture = ExtResource( 1 )
+centered = false
 hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
