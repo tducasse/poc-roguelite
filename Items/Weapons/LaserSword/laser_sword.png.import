@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LaserSword.png-a04778223e70c9647e80ad3fe0a628b8.stex"
+path="res://.import/laser_sword.png-f1ee5f18cbb607f3e9680cbb1ca1e1d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Weapons/LaserSword/LaserSword.png"
-dest_files=[ "res://.import/LaserSword.png-a04778223e70c9647e80ad3fe0a628b8.stex" ]
+source_file="res://Items/Weapons/LaserSword/laser_sword.png"
+dest_files=[ "res://.import/laser_sword.png-f1ee5f18cbb607f3e9680cbb1ca1e1d1.stex" ]
 
 [params]
 

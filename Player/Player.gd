@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
-# Movements
-const ACCELERATION = 500
-const MAX_SPEED = 200
+const SPEED = 175
 
 # Action Buttons
 const UI_RIGHT = "ui_right"
@@ -30,7 +28,7 @@ func _ready():
 	anim_state.travel(IDLE_STATE)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var input_vector = Vector2(
 		Input.get_action_strength(UI_RIGHT) - Input.get_action_strength(UI_LEFT),
 		Input.get_action_strength(UI_DOWN) - Input.get_action_strength(UI_UP)
@@ -40,6 +38,6 @@ func _physics_process(delta):
 		anim_tree.set(IDLE_BLEND_POS, input_vector)
 	anim_state.travel(IDLE_STATE)
 
-	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+	velocity = input_vector * SPEED
 	velocity = move_and_slide(velocity)
 	
