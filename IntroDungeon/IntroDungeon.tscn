@@ -2,7 +2,7 @@
 
 [ext_resource path="res://World/Dungeon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Slime/Slime.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Slime/Slime.tscn" type="PackedScene" id=3]
 [ext_resource path="res://IntroDungeon/IntroDungeon.gd" type="Script" id=4]
 
 [node name="Node2D" type="Node2D"]
@@ -22,17 +22,20 @@ remote_path = NodePath("../../../PlayerCamera")
 
 [node name="Slimes" type="YSort" parent="YSort"]
 
-[node name="Slime" parent="YSort/Slimes" instance=ExtResource( 3 )]
-position = Vector2( 454.1, 187.796 )
-
 [node name="Slime2" parent="YSort/Slimes" instance=ExtResource( 3 )]
-position = Vector2( 433.134, 256.963 )
+position = Vector2( 424.437, 239.426 )
 
 [node name="Slime3" parent="YSort/Slimes" instance=ExtResource( 3 )]
-position = Vector2( 409, 333.316 )
+position = Vector2( 446.203, 302.003 )
 
 [node name="Slime4" parent="YSort/Slimes" instance=ExtResource( 3 )]
-position = Vector2( 454.164, 385.293 )
+position = Vector2( 417.635, 361.86 )
+
+[node name="Slime5" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 444.843, 182.29 )
+
+[node name="Slime6" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 523.744, 266.633 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 143.582, 274.985 )

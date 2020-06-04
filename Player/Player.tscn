@@ -107,7 +107,7 @@ start_node = "Idle"
 [sub_resource type="CircleShape2D" id=13]
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 2
+collision_layer = 66
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

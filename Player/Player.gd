@@ -15,6 +15,8 @@ const IDLE_STATE = "Idle"
 
 # Local vars
 var velocity = Vector2.ZERO
+var type setget ,get_type
+
 
 # onready
 onready var anim_tree := $AnimationTree
@@ -41,3 +43,6 @@ func _physics_process(_delta):
 	velocity = input_vector * SPEED
 	velocity = move_and_slide(velocity)
 	
+
+func get_type():
+	return "Player"
