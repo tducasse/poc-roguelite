@@ -58,6 +58,8 @@ func chase_state(delta):
 	else:
 		state = states.IDLE
 
+	chase_looter_callback(delta)
+
 
 func chase_on_sight():
 	if DETECTION_ZONE.is_player_on_sight() || DETECTION_ZONE.are_items_on_sight():
@@ -79,7 +81,7 @@ func drop_items():
 			get_parent().add_child(itemInstance)
 			itemInstance.position = get_random_position_in_drop_zone()
 
-	looter_callback()
+	drop_looter_callback()
 
 func get_random_position_in_drop_zone():
 	return Vector2(
@@ -87,6 +89,9 @@ func get_random_position_in_drop_zone():
 				rand_range(position.y - DROP_ZONE.shape.radius, position.y + DROP_ZONE.shape.radius)
 			)
 
+# Methods to override by looter children
+func drop_looter_callback():
+	pass
 
-func looter_callback():
+func chase_looter_callback(_delta):
 	pass

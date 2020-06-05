@@ -14,18 +14,13 @@ func _ready():
 	SPRITE = $AnimatedSprite
 
 # Override
-func chase_state(delta):
+func chase_looter_callback(delta):
 	if DETECTION_ZONE.are_items_on_sight():
 		var item = DETECTION_ZONE.items[0]
 		move_toward_position(item.global_position, delta)
-	elif DETECTION_ZONE.is_player_on_sight():
-		var player = DETECTION_ZONE.player
-		move_toward_position(player.global_position, delta)
-	else:
-		state = states.IDLE
 
 # Override
-func looter_callback():
+func drop_looter_callback():
 	for item in lootedDrop:
 		var itemInstance = item.instance()
 		get_parent().add_child(itemInstance)
