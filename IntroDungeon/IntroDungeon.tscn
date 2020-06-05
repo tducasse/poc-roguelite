@@ -40,3 +40,4 @@ position = Vector2( 523.744, 266.633 )
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 143.582, 274.985 )
 current = true
+smoothing_enabled = true

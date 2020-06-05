@@ -1,5 +1,7 @@
 extends Node
 
+class_name Item
+
 
 export var itemID = 0
 

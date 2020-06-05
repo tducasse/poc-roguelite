@@ -1,4 +1,4 @@
-extends "res://Items/Item.gd"
+extends Item
 
 
 onready var animationPlayer := $AnimationPlayer
