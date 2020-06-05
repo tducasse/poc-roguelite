@@ -47,7 +47,7 @@ func idle_state(delta):
 	chase_on_sight()
 
 
-func wander_state(delta):
+func wander_state(_delta):
 	pass
 
 

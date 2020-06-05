@@ -4,9 +4,8 @@
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Collisions/Hitbox.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 24.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 16 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "IdleDown"
@@ -117,7 +116,7 @@ hframes = 4
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -5 )
+position = Vector2( 0, -3 )
 scale = Vector2( 1, 0.2 )
 shape = SubResource( 1 )
 
