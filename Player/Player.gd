@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED = 175
+const SPEED = 140
 
 # Action Buttons
 const UI_RIGHT = "ui_right"
@@ -11,7 +11,9 @@ const UI_DOWN = "ui_down"
 # Animation parameters
 const PLAYBACK_NAME = "parameters/playback"
 const IDLE_BLEND_POS = "parameters/Idle/blend_position"
+const WALK_BLEND_POS = "parameters/Walk/blend_position"
 const IDLE_STATE = "Idle"
+const WALK_STATE = "Walk"
 
 # Local vars
 var velocity = Vector2.ZERO
@@ -27,6 +29,7 @@ func _ready():
 	anim_tree.active = true
 	# turn right by default
 	anim_tree.set(IDLE_BLEND_POS, Vector2(1, 0))
+	anim_tree.set(WALK_BLEND_POS, Vector2(1, 0))
 	anim_state.travel(IDLE_STATE)
 
 
@@ -38,7 +41,10 @@ func _physics_process(_delta):
 
 	if input_vector != Vector2.ZERO:
 		anim_tree.set(IDLE_BLEND_POS, input_vector)
-	anim_state.travel(IDLE_STATE)
+		anim_tree.set(WALK_BLEND_POS, input_vector)
+		anim_state.travel(WALK_STATE)
+	else:
+		anim_state.travel(IDLE_STATE)
 
 	velocity = input_vector * SPEED
 	velocity = move_and_slide(velocity)
