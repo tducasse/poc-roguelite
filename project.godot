@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Projectv 2"
-run/main_scene="res://IntroDungeon/IntroDungeon.tscn"
+run/main_scene="res://Levels/Lab/Lab.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -105,5 +105,5 @@ ui_down={
 [rendering]
 
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.454902, 0.247059, 0.223529, 1 )
+environment/default_clear_color=Color( 0.0941176, 0.0784314, 0.145098, 1 )
 environment/default_environment="res://default_env.tres"
