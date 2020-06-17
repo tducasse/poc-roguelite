@@ -19,6 +19,7 @@ var DETECTION_ZONE: Area2D
 var DROP_ZONE: CollisionShape2D
 var SPRITE: AnimatedSprite
 var DROP_TABLE = {}
+var WANDER_CONTROLLER: Node2D
 
 var state = states.IDLE
 var knockbackVelocity = Vector2.ZERO
@@ -45,10 +46,16 @@ func _physics_process(delta):
 func idle_state(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	chase_on_sight()
+	wander_or_idle()
 
-
-func wander_state(_delta):
-	pass
+func wander_state(delta):
+	chase_on_sight()
+	wander_or_idle()
+	move_toward_position(WANDER_CONTROLLER.targetPosition, delta)
+	
+	if global_position.distance_to(WANDER_CONTROLLER.targetPosition) <= WANDER_TARGET_APPROXIMATION:
+		state = get_random_state([states.IDLE, states.WANDER])
+		WANDER_CONTROLLER.start_timer()
 
 
 func chase_state(delta):
@@ -59,6 +66,17 @@ func chase_state(delta):
 		state = states.IDLE
 
 	chase_looter_callback(delta)
+
+
+func wander_or_idle():
+	if WANDER_CONTROLLER.get_time_left() == 0:
+		state = get_random_state([states.IDLE, states.WANDER])
+		WANDER_CONTROLLER.start_timer()
+
+
+func get_random_state(statesList):
+	statesList.shuffle()
+	return statesList.pop_front()
 
 
 func chase_on_sight():

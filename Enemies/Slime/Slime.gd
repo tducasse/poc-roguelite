@@ -12,6 +12,7 @@ func _ready():
 	DETECTION_ZONE = $DetectionZone
 	DROP_ZONE = $DropZone/CollisionShape2D
 	SPRITE = $AnimatedSprite
+	WANDER_CONTROLLER = $WanderController
 
 # Override
 func chase_looter_callback(delta):
