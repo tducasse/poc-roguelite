@@ -4,7 +4,8 @@ extends KinematicBody2D
 enum states {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	LOOT
 }
 
 # "Constants" children have to initialize
@@ -37,6 +38,8 @@ func _physics_process(delta):
 			wander_state(delta)
 		states.CHASE:
 			chase_state(delta)
+		states.LOOT:
+			loot_state(delta)
 
 	if SOFT_COLLISION.is_colliding():
 		velocity += SOFT_COLLISION.get_push_vector() * delta * OVERLAPPING_AREA
@@ -65,7 +68,9 @@ func chase_state(delta):
 	else:
 		state = states.IDLE
 
-	chase_looter_callback(delta)
+
+func loot_state(delta):
+	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
 
 func wander_or_idle():
@@ -95,7 +100,7 @@ func drop_items():
 
 	for item in DROP_TABLE.keys():
 		if chance < DROP_TABLE.get(item):
-			var itemInstance = item.instance()
+			var itemInstance: Area2D = item.instance()
 			get_parent().add_child(itemInstance)
 			itemInstance.position = get_random_position_in_drop_zone()
 
@@ -109,7 +114,4 @@ func get_random_position_in_drop_zone():
 
 # Methods to override by looter children
 func drop_looter_callback():
-	pass
-
-func chase_looter_callback(_delta):
 	pass

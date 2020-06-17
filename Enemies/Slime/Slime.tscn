@@ -88,7 +88,7 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
 animation = "Animation"
-frame = 8
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -123,9 +123,12 @@ shape = SubResource( 18 )
 [node name="DropZone" parent="." instance=ExtResource( 8 )]
 
 [node name="WanderController" parent="." instance=ExtResource( 9 )]
+
+[node name="LooterTimer" type="Timer" parent="."]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="timeout" from="LooterTimer" to="." method="_on_LooterTimer_timeout"]
 
 [editable path="Hurtbox"]
 

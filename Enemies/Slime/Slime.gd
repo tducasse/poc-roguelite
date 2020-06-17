@@ -1,10 +1,10 @@
 extends "res://Enemies/Common/Enemy.gd"
 
-
 const RING = preload("res://Items/Weapons/Ring/Ring.tscn")
 
 var lootedDrop = []
 onready var stats = $Stats
+onready var looterTimer = $LooterTimer
 
 func _ready():
 	DROP_TABLE = {RING: 50}
@@ -15,10 +15,16 @@ func _ready():
 	WANDER_CONTROLLER = $WanderController
 
 # Override
-func chase_looter_callback(delta):
+func chase_state(delta):
 	if DETECTION_ZONE.are_items_on_sight():
 		var item = DETECTION_ZONE.items[0]
 		move_toward_position(item.global_position, delta)
+	elif DETECTION_ZONE.is_player_on_sight():
+		var player = DETECTION_ZONE.player
+		move_toward_position(player.global_position, delta)
+	else:
+		state = states.IDLE
+
 
 # Override
 func drop_looter_callback():
@@ -49,3 +55,9 @@ func _on_Hitbox_area_entered(area: Area2D):
 		var itemScene = load(area.filename)
 		lootedDrop.append(itemScene)
 		area.queue_free()
+		state = states.LOOT
+		looterTimer.start()
+
+
+func _on_LooterTimer_timeout():
+	state = states.IDLE
