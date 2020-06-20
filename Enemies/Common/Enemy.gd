@@ -4,7 +4,8 @@ extends KinematicBody2D
 enum states {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	LOOT
 }
 
 # "Constants" children have to initialize
@@ -19,6 +20,7 @@ var DETECTION_ZONE: Area2D
 var DROP_ZONE: CollisionShape2D
 var SPRITE: AnimatedSprite
 var DROP_TABLE = {}
+var WANDER_CONTROLLER: Node2D
 
 var state = states.IDLE
 var knockbackVelocity = Vector2.ZERO
@@ -36,6 +38,8 @@ func _physics_process(delta):
 			wander_state(delta)
 		states.CHASE:
 			chase_state(delta)
+		states.LOOT:
+			loot_state(delta)
 
 	if SOFT_COLLISION.is_colliding():
 		velocity += SOFT_COLLISION.get_push_vector() * delta * OVERLAPPING_AREA
@@ -45,10 +49,16 @@ func _physics_process(delta):
 func idle_state(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	chase_on_sight()
+	wander_or_idle()
 
-
-func wander_state(_delta):
-	pass
+func wander_state(delta):
+	chase_on_sight()
+	wander_or_idle()
+	move_toward_position(WANDER_CONTROLLER.targetPosition, delta)
+	
+	if global_position.distance_to(WANDER_CONTROLLER.targetPosition) <= WANDER_TARGET_APPROXIMATION:
+		state = get_random_state([states.IDLE, states.WANDER])
+		WANDER_CONTROLLER.start_timer()
 
 
 func chase_state(delta):
@@ -58,7 +68,20 @@ func chase_state(delta):
 	else:
 		state = states.IDLE
 
-	chase_looter_callback(delta)
+
+func loot_state(delta):
+	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+
+
+func wander_or_idle():
+	if WANDER_CONTROLLER.get_time_left() == 0:
+		state = get_random_state([states.IDLE, states.WANDER])
+		WANDER_CONTROLLER.start_timer()
+
+
+func get_random_state(statesList):
+	statesList.shuffle()
+	return statesList.pop_front()
 
 
 func chase_on_sight():
@@ -77,7 +100,7 @@ func drop_items():
 
 	for item in DROP_TABLE.keys():
 		if chance < DROP_TABLE.get(item):
-			var itemInstance = item.instance()
+			var itemInstance: Area2D = item.instance()
 			get_parent().add_child(itemInstance)
 			itemInstance.position = get_random_position_in_drop_zone()
 
@@ -91,7 +114,4 @@ func get_random_position_in_drop_zone():
 
 # Methods to override by looter children
 func drop_looter_callback():
-	pass
-
-func chase_looter_callback(_delta):
 	pass
