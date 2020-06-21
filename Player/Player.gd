@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
-const SPEED = 140
+
+const DEFAULT_CHAR_INDEX = 0
+
 
 # Action Buttons
 const UI_RIGHT = "ui_right"
@@ -8,30 +10,38 @@ const UI_LEFT = "ui_left"
 const UI_UP = "ui_up"
 const UI_DOWN = "ui_down"
 
-# Animation parameters
-const PLAYBACK_NAME = "parameters/playback"
-const IDLE_BLEND_POS = "parameters/Idle/blend_position"
-const WALK_BLEND_POS = "parameters/Walk/blend_position"
-const IDLE_STATE = "Idle"
-const WALK_STATE = "Walk"
 
 # Local vars
 var velocity = Vector2.ZERO
 var type setget ,get_type
+var active_character = null
 
 
-# onready
-onready var anim_tree := $AnimationTree
-onready var anim_state = anim_tree.get(PLAYBACK_NAME)
+# onready vars
+onready var characters := $Characters.get_children()
 
 
 func _ready():
-	anim_tree.active = true
-	# turn right by default
-	anim_tree.set(IDLE_BLEND_POS, Vector2(1, 0))
-	anim_tree.set(WALK_BLEND_POS, Vector2(1, 0))
-	anim_state.travel(IDLE_STATE)
+	active_character = characters[DEFAULT_CHAR_INDEX]
+	active_character.enable()
+	
+	
+func toggle_active_character(index):
+	active_character.disable()
+	active_character = characters[index]
+	active_character.enable()
+	
+	
+func check_active_character(event):
+	if event.is_action_pressed("toggle1"):
+		toggle_active_character(0)
+	elif event.is_action_pressed("toggle2"):
+		toggle_active_character(1)		
 
+
+func _input(event):
+	check_active_character(event)
+	
 
 func _physics_process(_delta):
 	var input_vector = Vector2(
@@ -39,16 +49,23 @@ func _physics_process(_delta):
 		Input.get_action_strength(UI_DOWN) - Input.get_action_strength(UI_UP)
 	).normalized()
 
-	if input_vector != Vector2.ZERO:
-		anim_tree.set(IDLE_BLEND_POS, input_vector)
-		anim_tree.set(WALK_BLEND_POS, input_vector)
-		anim_state.travel(WALK_STATE)
-	else:
-		anim_state.travel(IDLE_STATE)
+	# send the vector to every character, so that they can stay in sync
+	# even if they are not currently active
+	for character in characters:
+		character.receive_input_vector(input_vector)
 
-	velocity = input_vector * SPEED
-	velocity = move_and_slide(velocity)
-	
 
 func get_type():
 	return "Player"
+
+
+func move(value):
+	velocity = move_and_slide(value)
+
+
+func _on_CoatPlayer_on_move(value):
+	move(value)
+
+
+func _on_NakedPlayer_on_move(value):
+	move(value)
