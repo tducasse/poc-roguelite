@@ -19,14 +19,23 @@ var active_character = null
 
 # onready vars
 onready var characters := $Characters.get_children()
+onready var smoke := $Smoke
 
 
 func _ready():
 	active_character = characters[DEFAULT_CHAR_INDEX]
 	active_character.enable()
+	smoke.visible = false
+	
+	
+func play_smoke_animation():
+	smoke.visible = true
+	smoke.frame = 0
+	smoke.play()
 	
 	
 func toggle_active_character(index):
+	play_smoke_animation()
 	active_character.disable()
 	active_character = characters[index]
 	active_character.enable()
@@ -69,3 +78,7 @@ func _on_CoatPlayer_on_move(value):
 
 func _on_NakedPlayer_on_move(value):
 	move(value)
+
+
+func _on_Smoke_animation_finished():
+	smoke.visible = false
