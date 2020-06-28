@@ -62,9 +62,9 @@ position = Vector2( 0, -12 )
 [node name="CoatPlayer" parent="Characters" instance=ExtResource( 4 )]
 
 [node name="Smoke" type="AnimatedSprite" parent="."]
+visible = false
 position = Vector2( 0, -12 )
 frames = SubResource( 7 )
-frame = 3
 [connection signal="on_move" from="Characters/NakedPlayer" to="." method="_on_NakedPlayer_on_move"]
 [connection signal="on_move" from="Characters/CoatPlayer" to="." method="_on_CoatPlayer_on_move"]
 [connection signal="animation_finished" from="Smoke" to="." method="_on_Smoke_animation_finished"]
