@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+class_name Player
 
 const DEFAULT_CHAR_INDEX = 0
 
@@ -16,7 +17,7 @@ var velocity = Vector2.ZERO
 var type setget ,get_type
 var active_character = null
 var active_character_index = 0
-
+var available_characters_indexes = [0]
 
 # onready vars
 onready var characters := $Characters.get_children()
@@ -27,28 +28,36 @@ func _ready():
 	active_character = characters[DEFAULT_CHAR_INDEX]
 	active_character.enable()
 	smoke.visible = false
-	
-	
+
+
 func play_smoke_animation():
 	smoke.visible = true
 	smoke.frame = 0
 	smoke.play()
+
+
+func is_allowed_to_transform(index):
+	return index in available_characters_indexes
 	
 	
 func toggle_active_character(index):
-	if active_character_index != index:
+	if active_character_index != index and is_allowed_to_transform(index):
 		play_smoke_animation()
 		active_character.disable()
 		active_character = characters[index]
 		active_character.enable()
 		active_character_index = index
-	
-	
+		
+
+func add_available_character(index):
+	available_characters_indexes.append(index)
+
+
 func check_active_character(event):
 	if event.is_action_pressed("toggle1"):
 		toggle_active_character(0)
 	elif event.is_action_pressed("toggle2"):
-		toggle_active_character(1)		
+		toggle_active_character(1)
 
 
 func _input(event):
@@ -85,3 +94,9 @@ func _on_NakedPlayer_on_move(value):
 
 func _on_Smoke_animation_finished():
 	smoke.visible = false
+
+
+func _on_PickItems_pick_item(item_type, item_data):
+	if item_type == "character":
+		add_available_character(item_data)
+		toggle_active_character(item_data)

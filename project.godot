@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://Items/Item.gd"
+}, {
+"base": "Area2D",
+"class": "ItemArea",
+"language": "GDScript",
+"path": "res://Items/Common/ItemArea.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
 } ]
 _global_script_class_icons={
-"Item": ""
+"Item": "",
+"ItemArea": "",
+"Player": ""
 }
 
 [application]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/Lab/Lab.gd" type="Script" id=1]
 [ext_resource path="res://Environment/Lab/LabWall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Slime/Slime.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Environment/Lab/LabGround.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Items/Weapons/Robe/Robe.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -39,6 +40,11 @@ position = Vector2( 444.843, 182.29 )
 
 [node name="Slime6" parent="YSort/Slimes" instance=ExtResource( 3 )]
 position = Vector2( 523.744, 266.633 )
+
+[node name="Items" type="YSort" parent="YSort"]
+
+[node name="Robe" parent="YSort/Items" instance=ExtResource( 6 )]
+position = Vector2( 168.369, 143.66 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 142.565, 318.181 )
