@@ -69,7 +69,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "WalkDown"
-length = 0.8
+length = 0.6
 loop = true
 step = 0.2
 tracks/0/type = "value"
@@ -79,15 +79,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 6, 7 ]
+"values": [ 5, 6, 7 ]
 }
 
 [sub_resource type="Animation" id=6]
 resource_name = "WalkLeft"
-length = 0.8
+length = 0.6
 loop = true
 step = 0.2
 tracks/0/type = "value"
@@ -97,15 +97,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 8, 9, 10, 11 ]
+"values": [ 9, 10, 11 ]
 }
 
 [sub_resource type="Animation" id=7]
 resource_name = "WalkRight"
-length = 0.8
+length = 0.6
 loop = true
 step = 0.2
 tracks/0/type = "value"
@@ -115,15 +115,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 12, 13, 14, 15 ]
+"values": [ 13, 14, 15 ]
 }
 
 [sub_resource type="Animation" id=8]
 resource_name = "WalkUp"
-length = 0.8
+length = 0.6
 loop = true
 step = 0.2
 tracks/0/type = "value"
@@ -133,10 +133,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 1, 2, 3 ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=9]
@@ -209,7 +209,6 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 16
-frame = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IdleDown = SubResource( 1 )
