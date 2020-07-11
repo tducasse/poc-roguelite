@@ -15,6 +15,7 @@ const UI_DOWN = "ui_down"
 var velocity = Vector2.ZERO
 var type setget ,get_type
 var active_character = null
+var active_character_index = 0
 
 
 # onready vars
@@ -35,10 +36,12 @@ func play_smoke_animation():
 	
 	
 func toggle_active_character(index):
-	play_smoke_animation()
-	active_character.disable()
-	active_character = characters[index]
-	active_character.enable()
+	if active_character_index != index:
+		play_smoke_animation()
+		active_character.disable()
+		active_character = characters[index]
+		active_character.enable()
+		active_character_index = index
 	
 	
 func check_active_character(event):
