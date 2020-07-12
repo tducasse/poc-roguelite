@@ -38,6 +38,27 @@ position = Vector2( 417.635, 361.86 )
 [node name="Slime5" parent="YSort/Slimes" instance=ExtResource( 3 )]
 position = Vector2( 444.843, 182.29 )
 
+[node name="Slime7" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 391.923, 158.506 )
+
+[node name="Slime8" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 383.004, 214.399 )
+
+[node name="Slime9" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 451.978, 216.777 )
+
+[node name="Slime10" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 394.302, 266.724 )
+
+[node name="Slime11" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 474.573, 262.561 )
+
+[node name="Slime12" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 371.707, 307.157 )
+
+[node name="Slime13" parent="YSort/Slimes" instance=ExtResource( 3 )]
+position = Vector2( 381.22, 349.968 )
+
 [node name="Slime6" parent="YSort/Slimes" instance=ExtResource( 3 )]
 position = Vector2( 523.744, 266.633 )
 

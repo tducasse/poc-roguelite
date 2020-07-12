@@ -62,7 +62,8 @@ func check_active_character(event):
 
 func _input(event):
 	check_active_character(event)
-	
+
+
 
 func _physics_process(_delta):
 	var input_vector = Vector2(
@@ -99,8 +100,11 @@ func _on_Smoke_animation_finished():
 func _on_PickItems_pick_item(item_type, item_data):
 	match item_type:
 		"Character":
-			add_available_character(item_data)
-			toggle_active_character(item_data)
+			var index = item_data['index']
+			add_available_character(index)
+			toggle_active_character(index)
 		"Item":
 			# TODO: actually implement this part + inventory
-			print(item_type, item_data)
+			print('picked ', item_type, ' ', item_data['name'])
+
+

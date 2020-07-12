@@ -7,7 +7,7 @@ onready var stats = $Stats
 onready var looterTimer = $LooterTimer
 
 func _ready():
-	DROP_TABLE = {RING: 50}
+	DROP_TABLE = {RING: 100}
 	SOFT_COLLISION = $SoftCollision
 	DETECTION_ZONE = $DetectionZone
 	DROP_ZONE = $DropZone/CollisionShape2D
@@ -29,9 +29,10 @@ func chase_state(delta):
 # Override
 func drop_looter_callback():
 	for item in lootedDrop:
-		var itemInstance = item.instance()
-		get_parent().add_child(itemInstance)
-		itemInstance.position = get_random_position_in_drop_zone()
+		var item_instance = item.instance()
+		item_instance.position = get_random_free_position_in_drop_zone(item_instance)
+		get_parent().add_child(item_instance)
+
 	lootedDrop = []
 
 

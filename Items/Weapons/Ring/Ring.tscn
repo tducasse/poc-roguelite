@@ -43,5 +43,6 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
+frame = 2
 playing = true
 [connection signal="picked" from="." to="." method="_on_Ring_picked"]

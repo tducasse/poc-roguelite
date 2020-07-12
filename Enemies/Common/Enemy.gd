@@ -96,22 +96,59 @@ func move_toward_position(targetPos, delta):
 	SPRITE.flip_h = velocity.x < 0
 
 
+func get_collision_shape(item_instance: Area2D):
+	var owner = item_instance.shape_find_owner(0)
+	return item_instance.shape_owner_get_shape(owner, 0)
+
+
+func build_query(shape, pos):
+	var query = Physics2DShapeQueryParameters.new();
+	query.set_shape(shape);
+	query.set_transform(Transform2D(0, pos));
+	query.collide_with_areas = true;
+	query.collide_with_bodies = true;
+	return query
+
+
+func is_free_position(vec: Vector2, item_instance: Area2D):
+	var space_state = get_world_2d().direct_space_state;
+	var shape: Shape2D = get_collision_shape(item_instance)
+	if not shape:
+		return true
+	var query = build_query(shape, vec)
+	var intersections = space_state.intersect_shape(query);
+	for i in intersections:
+		if i.collider is TileMap:
+			return false
+	return true
+
+
+func get_random_position():
+	return Vector2(
+				rand_range(position.x - DROP_ZONE.shape.radius, position.x + DROP_ZONE.shape.radius),
+				rand_range(position.y - DROP_ZONE.shape.radius, position.y + DROP_ZONE.shape.radius)
+			)
+
+
+func get_random_free_position_in_drop_zone(item_instance):
+	var vec = get_random_position()
+	while not is_free_position(vec, item_instance):
+		vec = get_random_position()
+	return vec
+
+
 func drop_items():
 	var chance = randi() % 100
 
 	for item in DROP_TABLE.keys():
 		if chance < DROP_TABLE.get(item):
-			var itemInstance: Area2D = item.instance()
-			get_parent().add_child(itemInstance)
-			itemInstance.position = get_random_position_in_drop_zone()
+			var item_instance: Area2D = item.instance()
+			item_instance.position = get_random_free_position_in_drop_zone(item_instance)
+			get_parent().add_child(item_instance)
 
 	drop_looter_callback()
 
-func get_random_position_in_drop_zone():
-	return Vector2(
-				rand_range(position.x - DROP_ZONE.shape.radius, position.x + DROP_ZONE.shape.radius),
-				rand_range(position.y - DROP_ZONE.shape.radius, position.y + DROP_ZONE.shape.radius)
-			)
+
 
 # Methods to override by looter children
 func drop_looter_callback():
