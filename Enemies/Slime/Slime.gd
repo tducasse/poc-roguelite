@@ -1,4 +1,4 @@
-extends "res://Enemies/Common/Enemy.gd"
+extends Enemy
 
 const RING = preload("res://Items/Weapons/Ring/Ring.tscn")
 
