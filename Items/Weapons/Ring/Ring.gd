@@ -1,6 +1,10 @@
 extends Item
 
-var type setget ,get_type
+func _ready():
+	type = "Item"
+	# item id
+	data = 1
+	
 
-func get_type():
-	return "Item"
+func _on_Ring_picked():
+	queue_free()

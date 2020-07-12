@@ -97,6 +97,10 @@ func _on_Smoke_animation_finished():
 
 
 func _on_PickItems_pick_item(item_type, item_data):
-	if item_type == "character":
-		add_available_character(item_data)
-		toggle_active_character(item_data)
+	match item_type:
+		"Character":
+			add_available_character(item_data)
+			toggle_active_character(item_data)
+		"Item":
+			# TODO: actually implement this part + inventory
+			print(item_type, item_data)
