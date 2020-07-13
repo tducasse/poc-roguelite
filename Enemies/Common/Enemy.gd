@@ -67,7 +67,8 @@ func wander_state(delta):
 func chase_state(delta):
 	if DETECTION_ZONE.is_player_on_sight():
 		var player = DETECTION_ZONE.player
-		move_toward_position(player.global_position, delta)
+		var path = NAVIGATION_NODE.get_simple_path(global_position, player.global_position, true)
+		move_along_path(path, delta)
 	else:
 		state = states.IDLE
 
@@ -137,6 +138,20 @@ func get_random_free_position_in_drop_zone(item_instance):
 	while not is_free_position(vec, item_instance):
 		vec = get_random_position()
 	return vec
+
+
+func move_along_path(path: PoolVector2Array, delta: float):
+	if path.size() == 0:
+		return
+	while delta > 0.0 and not path.empty():
+		var next_waypoint = path[0]
+		var distance_to_next := position.distance_to(next_waypoint)
+		if delta < distance_to_next:
+			move_toward_position(next_waypoint, delta)
+		else:
+			path.remove(0)
+		delta -= distance_to_next
+
 
 
 func drop_items():

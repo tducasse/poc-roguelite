@@ -17,19 +17,6 @@ func _ready():
 	NAVIGATION_NODE = get_node(NAVIGATION_PATH)
 
 
-func move_along_path(path, distance):
-	if path.size() == 0:
-		return
-	while distance > 0.0 and not path.empty():
-		var next_waypoint = path[0]
-		var distance_to_next := position.distance_to(next_waypoint)
-		if distance < distance_to_next:
-			move_toward_position(next_waypoint, distance)
-		else:
-			path.remove(0)
-		distance -= distance_to_next
-
-
 # Override
 func chase_state(delta):
 	if DETECTION_ZONE.are_items_on_sight():

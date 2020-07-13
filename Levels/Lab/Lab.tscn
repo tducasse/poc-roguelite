@@ -57,6 +57,4 @@ position = Vector2( 168.369, 143.66 )
 position = Vector2( 142.565, 318.181 )
 current = true
 
-[node name="Line2D" type="Line2D" parent="."]
-
 [editable path="LabGround"]
