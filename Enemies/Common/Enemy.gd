@@ -99,9 +99,10 @@ func move_toward_position(targetPos, delta):
 	SPRITE.flip_h = velocity.x < 0
 
 
-func get_collision_shape(item_instance: Area2D):
-	var owner = item_instance.shape_find_owner(0)
-	return item_instance.shape_owner_get_shape(owner, 0)
+func get_collision_shape(item_instance: Node2D):
+	var item_shape = item_instance.get_node("Shape")
+	var owner = item_shape.shape_find_owner(0)
+	return item_shape.shape_owner_get_shape(owner, 0)
 
 
 func build_query(shape, pos):
@@ -113,7 +114,7 @@ func build_query(shape, pos):
 	return query
 
 
-func is_free_position(vec: Vector2, item_instance: Area2D):
+func is_free_position(vec: Vector2, item_instance: Node2D):
 	var space_state = get_world_2d().direct_space_state;
 	var shape: Shape2D = get_collision_shape(item_instance)
 	if not shape:
@@ -159,7 +160,7 @@ func drop_items():
 
 	for item in DROP_TABLE.keys():
 		if chance < DROP_TABLE.get(item):
-			var item_instance: Area2D = item.instance()
+			var item_instance: Node2D = item.instance()
 			item_instance.position = get_random_free_position_in_drop_zone(item_instance)
 			get_parent().add_child(item_instance)
 

@@ -4,7 +4,7 @@
 [ext_resource path="res://Environment/Lab/LabWall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Slime/Slime.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Environment/Lab/LabGround.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Items/Weapons/Robe/Robe.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Artefacts/Robe/Robe.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Levels/SpawnPos.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]

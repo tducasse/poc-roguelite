@@ -1,6 +1,6 @@
 extends Enemy
 
-const RING = preload("res://Items/Weapons/Ring/Ring.tscn")
+const RING = preload("res://Items/Equipments/Random_Ring/RandomRing.tscn")
 
 var lootedDrop = []
 onready var stats = $Stats
@@ -36,7 +36,7 @@ func drop_looter_callback():
 		var item_instance = item.instance()
 		item_instance.position = get_random_free_position_in_drop_zone(item_instance)
 		get_parent().add_child(item_instance)
-
+		
 	lootedDrop = []
 
 
@@ -56,10 +56,11 @@ func _on_Stats_no_health():
 
 
 func _on_Hitbox_area_entered(area: Area2D):
-	if area.has_method("get_type") && area.type == "Item":
-		var itemScene = load(area.filename)
+	var owner = area.get_parent()
+	if owner.has_method("get_type") && owner.type == "Item":
+		var itemScene = load(owner.filename)
 		lootedDrop.append(itemScene)
-		area.queue_free()
+		owner.queue_free()
 		state = states.LOOT
 		looterTimer.start()
 

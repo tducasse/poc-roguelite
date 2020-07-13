@@ -107,4 +107,3 @@ func _on_PickItems_pick_item(item_type, item_data):
 			# TODO: actually implement this part + inventory
 			print('picked ', item_type, ' ', item_data['name'])
 
-

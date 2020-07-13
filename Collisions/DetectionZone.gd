@@ -23,10 +23,12 @@ func _on_DetectionZone_body_exited(body):
 
 
 func _on_DetectionZone_area_entered(area):
-	if area.has_method("get_type") && area.type == "Item":
-		items.append(area)
+	var owner = area.get_parent()
+	if owner.has_method("get_type") && owner.type == "Item":
+		items.append(owner)
 
 
 func _on_DetectionZone_area_exited(area):
-	if area.has_method("get_type") && area.type == "Item":
-		items.erase(area)
+	var owner = area.get_parent()
+	if owner.has_method("get_type") && owner.type == "Item":
+		items.erase(owner)

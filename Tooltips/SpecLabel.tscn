@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="SpecLabel" type="Label"]
+margin_top = 45.0
+margin_right = 384.0
+margin_bottom = 66.0
+text = "Attack: 50"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

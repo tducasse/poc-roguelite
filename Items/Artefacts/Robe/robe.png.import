@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/robe.png-cef107cb1e7e7c86f700e80239badcdf.stex"
+path="res://.import/robe.png-6cbe9c8e708e5b12fb9fbcd1ed866b50.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Weapons/Robe/robe.png"
-dest_files=[ "res://.import/robe.png-cef107cb1e7e7c86f700e80239badcdf.stex" ]
+source_file="res://Items/Artefacts/Robe/robe.png"
+dest_files=[ "res://.import/robe.png-6cbe9c8e708e5b12fb9fbcd1ed866b50.stex" ]
 
 [params]
 

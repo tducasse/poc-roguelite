@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Items/Specs/SpecResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+mandatory = true
+chance = 1.0
+spec_name = "Int"
+min_value = 1
+max_value = 5
