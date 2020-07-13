@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="PlayerCamera" type="Camera2D"]
+position = Vector2( 142.565, 318.181 )
+current = true
