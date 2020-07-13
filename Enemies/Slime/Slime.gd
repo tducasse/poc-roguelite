@@ -6,13 +6,29 @@ var lootedDrop = []
 onready var stats = $Stats
 onready var looterTimer = $LooterTimer
 
+
 func _ready():
-	DROP_TABLE = {RING: 100}
+	DROP_TABLE = {RING: 50}
 	SOFT_COLLISION = $SoftCollision
 	DETECTION_ZONE = $DetectionZone
 	DROP_ZONE = $DropZone/CollisionShape2D
 	SPRITE = $AnimatedSprite
 	WANDER_CONTROLLER = $WanderController
+	NAVIGATION_NODE = get_node(NAVIGATION_PATH)
+
+
+func move_along_path(path, distance):
+	if path.size() == 0:
+		return
+	while distance > 0.0 and not path.empty():
+		var next_waypoint = path[0]
+		var distance_to_next := position.distance_to(next_waypoint)
+		if distance < distance_to_next:
+			move_toward_position(next_waypoint, distance)
+		else:
+			path.remove(0)
+		distance -= distance_to_next
+
 
 # Override
 func chase_state(delta):
@@ -21,7 +37,8 @@ func chase_state(delta):
 		move_toward_position(item.global_position, delta)
 	elif DETECTION_ZONE.is_player_on_sight():
 		var player = DETECTION_ZONE.player
-		move_toward_position(player.global_position, delta)
+		var path = NAVIGATION_NODE.get_simple_path(global_position, player.global_position, true)
+		move_along_path(path, delta)
 	else:
 		state = states.IDLE
 

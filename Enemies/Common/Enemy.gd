@@ -22,6 +22,8 @@ var DROP_ZONE: CollisionShape2D
 var SPRITE: AnimatedSprite
 var DROP_TABLE = {}
 var WANDER_CONTROLLER: Node2D
+var NAVIGATION_NODE: Navigation2D
+export(NodePath) var NAVIGATION_PATH
 
 var state = states.IDLE
 var knockbackVelocity = Vector2.ZERO
