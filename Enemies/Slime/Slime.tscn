@@ -88,7 +88,7 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
 animation = "Animation"
-frame = 7
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -113,6 +113,7 @@ shape = SubResource( 17 )
 [node name="SoftCollision" parent="." instance=ExtResource( 6 )]
 
 [node name="DetectionZone" parent="." instance=ExtResource( 7 )]
+visible = false
 collision_layer = 0
 collision_mask = 34
 

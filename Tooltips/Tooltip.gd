@@ -6,11 +6,13 @@ onready var column : VBoxContainer = $Column
 const SPEC_LABEL = preload("res://Tooltips/SpecLabel.tscn")
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	connect("draw", self, "_on_draw")
+	# warning-ignore:return_value_discarded
 	connect("hide", self, "_on_hide")
 	hide()
 
-func _process(delta : float) -> void:
+func _process(_delta : float) -> void:
 	rect_global_position = get_viewport().get_mouse_position()
 	
 func _on_draw() -> void:
