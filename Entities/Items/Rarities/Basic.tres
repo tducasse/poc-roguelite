@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Entities/Items/Rarities/RarityResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+chance = 1.0
+rarity_name = "Basic"
+spec_multiplier = 1.0
+ui_color = Color( 1, 1, 1, 1 )

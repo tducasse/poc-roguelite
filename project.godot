@@ -12,37 +12,37 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Enemies/Common/Enemy.gd"
+"path": "res://Entities/Enemies/Common/Enemy.gd"
 }, {
 "base": "Node",
 "class": "Item",
 "language": "GDScript",
-"path": "res://Items/Item.gd"
+"path": "res://Entities/Items/Item.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Player/Player.gd"
+"path": "res://Entities/Player/Player.gd"
 }, {
 "base": "Item",
 "class": "RandomItem",
 "language": "GDScript",
-"path": "res://Items/RandomItem.gd"
+"path": "res://Entities/Items/RandomItem.gd"
 }, {
 "base": "Resource",
 "class": "RarityResource",
 "language": "GDScript",
-"path": "res://Items/Rarities/RarityResource.gd"
+"path": "res://Entities/Items/Rarities/RarityResource.gd"
 }, {
 "base": "Node2D",
 "class": "Spec",
 "language": "GDScript",
-"path": "res://Items/Specs/Spec.gd"
+"path": "res://Entities/Items/Specs/Spec.gd"
 }, {
 "base": "Resource",
 "class": "SpecResource",
 "language": "GDScript",
-"path": "res://Items/Specs/SpecResource.gd"
+"path": "res://Entities/Items/Specs/SpecResource.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
@@ -57,13 +57,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Projectv 2"
-run/main_scene="res://Levels/Lab/Lab.tscn"
+run/main_scene="res://Scenes/Lab/Lab_0/Lab_0.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-PlayerStats="*res://Stats/PlayerStats.tscn"
-Loader="*res://Global/Loader.gd"
+PlayerStats="*res://Global/Stats/PlayerStats.tscn"
+Loader="*res://Global/Loader/Loader.gd"
 
 [display]
 
