@@ -1,14 +1,39 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Lab/Lab_0/Lab_0.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Lab/Common/LabWall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/Enemies/Slime/Slime.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Lab/Common/LabGround.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Common/Warp.png" type="Texture" id=5]
 [ext_resource path="res://Entities/Items/Artifacts/Robe/Robe.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Common/SpawnPos.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 12, 20 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 12, 0, 12, 20 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 24, 0, 12, 20 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 5 )
+region = Rect2( 36, 0, 12, 20 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Lab" type="Node2D"]
 script = ExtResource( 1 )
@@ -58,6 +83,11 @@ collision_mask = 2147483650
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WarpLab2"]
 shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="WarpLab2"]
+position = Vector2( 0, -8 )
+frames = SubResource( 6 )
+playing = true
 
 [node name="SpawnPos" parent="." groups=[
 "SpawnPosLab",
