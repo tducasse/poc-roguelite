@@ -53,7 +53,7 @@ tile_data = PoolIntArray( 393221, 0, 196609, 393222, 0, 3, 393223, 0, 3, 393224,
 [node name="Slimes" type="YSort" parent="World"]
 
 [node name="Slime2" parent="World/Slimes" instance=ExtResource( 3 )]
-position = Vector2( 165.785, 184.128 )
+position = Vector2( 439.601, 249.304 )
 NAVIGATION_PATH = NodePath("../../../../Lab/LabGround")
 
 [node name="Slime3" parent="World/Slimes" instance=ExtResource( 3 )]
@@ -87,6 +87,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="WarpLab2"]
 position = Vector2( 0, -8 )
 frames = SubResource( 6 )
+frame = 3
 playing = true
 
 [node name="SpawnPos" parent="." groups=[

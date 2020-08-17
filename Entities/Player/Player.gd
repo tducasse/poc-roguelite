@@ -10,6 +10,9 @@ const UI_RIGHT = "ui_right"
 const UI_LEFT = "ui_left"
 const UI_UP = "ui_up"
 const UI_DOWN = "ui_down"
+const ATTACK = "attack"
+const TOGGLE1 = "toggle1"
+const TOGGLE2 = "toggle2"
 
 
 # Local vars
@@ -54,15 +57,21 @@ func add_available_character(index):
 
 
 func check_active_character(event):
-	if event.is_action_pressed("toggle1"):
+	if event.is_action_pressed(TOGGLE1):
 		toggle_active_character(0)
-	elif event.is_action_pressed("toggle2"):
+	elif event.is_action_pressed(TOGGLE2):
 		toggle_active_character(1)
 
 
+func attack():
+	if Input.is_action_pressed(ATTACK):
+		if active_character.has_method("attack"):
+			active_character.attack()
+	
+
 func _input(event):
 	check_active_character(event)
-
+	attack()
 
 
 func _physics_process(_delta):

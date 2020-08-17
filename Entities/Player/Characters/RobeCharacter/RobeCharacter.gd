@@ -8,14 +8,17 @@ const SPEED = 140
 const PLAYBACK_NAME = "parameters/playback"
 const IDLE_BLEND_POS = "parameters/Idle/blend_position"
 const WALK_BLEND_POS = "parameters/Walk/blend_position"
+const ATTACK_BLEND_POS = "parameters/Attack/blend_position"
 const IDLE_STATE = "Idle"
 const WALK_STATE = "Walk"
+const ATTACK_STATE = "Attack"
 
 
 # onready
 onready var anim_tree := $AnimationTree
 onready var anim_state = anim_tree.get(PLAYBACK_NAME)
 
+var attacking = false
 
 signal on_move(value)
 
@@ -27,6 +30,16 @@ func disable():
 	visible = false
 	
 
+func back_to_idle():
+	attacking = false
+	anim_state.travel(IDLE_STATE)
+	
+		
+func attack():
+	anim_state.travel(ATTACK_STATE)
+	attacking = true
+	
+
 func _ready():
 	disable()
 	anim_tree.active = true
@@ -36,13 +49,16 @@ func _ready():
 	anim_state.travel(IDLE_STATE)
 
 
+
 func receive_input_vector(input_vector):
 	if input_vector != Vector2.ZERO:
 		anim_tree.set(IDLE_BLEND_POS, input_vector)
 		anim_tree.set(WALK_BLEND_POS, input_vector)
+		anim_tree.set(ATTACK_BLEND_POS, input_vector)
 		anim_state.travel(WALK_STATE)
 	else:
-		anim_state.travel(IDLE_STATE)
+		if not attacking:
+			anim_state.travel(IDLE_STATE)
 		
 	if not visible:
 	# no need to do anything else if it's not the active character
