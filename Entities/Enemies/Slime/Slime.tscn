@@ -10,12 +10,6 @@
 [ext_resource path="res://Utils/Collisions/DropZone.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Entities/Enemies/Common/WanderController.tscn" type="PackedScene" id=9]
 
-
-
-
-
-
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 22 )
@@ -94,7 +88,7 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
 animation = "Animation"
-frame = 2
+frame = 8
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
