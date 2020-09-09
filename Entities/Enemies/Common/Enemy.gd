@@ -157,13 +157,11 @@ func move_along_path(path: PoolVector2Array, delta: float):
 
 func drop_items():
 	var chance = randi() % 100
-
 	for item in DROP_TABLE.keys():
 		if chance < DROP_TABLE.get(item):
 			var item_instance: Node2D = item.instance()
 			item_instance.position = get_random_free_position_in_drop_zone(item_instance)
 			get_parent().add_child(item_instance)
-
 	drop_looter_callback()
 
 

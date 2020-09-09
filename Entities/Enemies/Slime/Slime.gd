@@ -43,9 +43,11 @@ func drop_looter_callback():
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
 
+
 func drop_and_die():
 	drop_items()
 	queue_free()
+
 
 func _on_Stats_no_health():
 	# We call drop_items, which tries to add a child that contains an Area.

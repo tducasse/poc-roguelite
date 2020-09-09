@@ -17,6 +17,7 @@ const ATTACK_STATE = "Attack"
 # onready
 onready var anim_tree := $AnimationTree
 onready var anim_state = anim_tree.get(PLAYBACK_NAME)
+onready var psy_hitbox_shape := $PsyHitbox/CollisionShape2D
 
 var attacking = false
 
