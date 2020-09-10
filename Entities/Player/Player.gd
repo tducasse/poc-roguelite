@@ -4,6 +4,12 @@ class_name Player
 
 const DEFAULT_CHAR_INDEX = 0
 
+enum states {
+	MOVE,
+	ATTACK,
+	TRANSFORM1,
+	TRANSFORM2
+}
 
 # Action Buttons
 const UI_RIGHT = "ui_right"
@@ -16,6 +22,7 @@ const TOGGLE2 = "toggle2"
 
 
 # Local vars
+var state = states.MOVE
 var velocity = Vector2.ZERO
 var type setget ,get_type
 var active_character = null
@@ -31,6 +38,54 @@ func _ready():
 	active_character = characters[DEFAULT_CHAR_INDEX]
 	active_character.enable()
 	smoke.visible = false
+
+
+func _physics_process(delta):
+	match state:
+		states.MOVE:
+			move_state(delta)
+		states.ATTACK:
+			attack_state()
+		states.TRANSFORM1:
+			transform1_state()
+		states.TRANSFORM2:
+			transform2_state()
+
+
+func move_state(delta):
+	var input_vector = Vector2(
+		Input.get_action_strength(UI_RIGHT) - Input.get_action_strength(UI_LEFT),
+		Input.get_action_strength(UI_DOWN) - Input.get_action_strength(UI_UP)
+	).normalized()
+	
+	if input_vector != Vector2.ZERO:
+		# send the vector to every character, so that they can stay in sync
+		# even if they are not currently active
+		for character in characters:
+			character.receive_input_vector(input_vector)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, delta)
+		
+	if Input.is_action_just_pressed(ATTACK):
+		state = states.ATTACK
+	elif Input.is_action_just_pressed(TOGGLE1):
+		state = states.TRANSFORM1
+	elif Input.is_action_just_pressed(TOGGLE2):
+		state = states.TRANSFORM2
+
+
+func attack_state():
+	attack()
+
+
+func transform1_state():
+	toggle_active_character(0)
+	state = states.MOVE
+
+
+func transform2_state():
+	toggle_active_character(1)
+	state = states.MOVE
 
 
 func play_smoke_animation():
@@ -64,26 +119,10 @@ func check_active_character(event):
 
 
 func attack():
-	if Input.is_action_pressed(ATTACK):
-		if active_character.has_method("attack"):
-			active_character.attack()
-	
-
-func _input(event):
-	check_active_character(event)
-	attack()
-
-
-func _physics_process(_delta):
-	var input_vector = Vector2(
-		Input.get_action_strength(UI_RIGHT) - Input.get_action_strength(UI_LEFT),
-		Input.get_action_strength(UI_DOWN) - Input.get_action_strength(UI_UP)
-	).normalized()
-
-	# send the vector to every character, so that they can stay in sync
-	# even if they are not currently active
-	for character in characters:
-		character.receive_input_vector(input_vector)
+	if active_character.has_method("attack"):
+		active_character.attack()
+	else :
+		state = states.MOVE
 
 
 func get_type():
@@ -116,3 +155,6 @@ func _on_PickItems_pick_item(item_type, item_data):
 			# TODO: actually implement this part + inventory
 			print('picked ', item_type, ' ', item_data['name'])
 
+
+func _on_CoatPlayer_on_attack_end(_value):
+	state = states.MOVE

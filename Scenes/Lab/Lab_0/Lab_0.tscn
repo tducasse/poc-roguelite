@@ -87,6 +87,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="WarpLab2"]
 position = Vector2( 0, -8 )
 frames = SubResource( 6 )
+frame = 1
 playing = true
 
 [node name="SpawnPos" parent="." groups=[

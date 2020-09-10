@@ -10,36 +10,36 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 20 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 21, 22 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
 region = Rect2( 21, 0, 21, 22 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 7 )
 region = Rect2( 42, 0, 21, 22 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
 region = Rect2( 63, 0, 21, 22 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": false,
 "name": "default",
 "speed": 16.0
 } ]
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=7]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
-collision_layer = 66
+collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -58,7 +58,7 @@ position = Vector2( 0, -12 )
 [node name="Smoke" type="AnimatedSprite" parent="."]
 visible = false
 position = Vector2( 0, -12 )
-frames = SubResource( 8 )
+frames = SubResource( 6 )
 
 [node name="PickItems" type="Area2D" parent="."]
 collision_layer = 0
@@ -67,7 +67,7 @@ script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickItems"]
 position = Vector2( 0, -12 )
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="CameraHolder" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("../PlayerCamera")
@@ -75,6 +75,7 @@ remote_path = NodePath("../PlayerCamera")
 [node name="PlayerCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 0 )
 [connection signal="on_move" from="Characters/NakedPlayer" to="." method="_on_NakedPlayer_on_move"]
+[connection signal="on_attack_end" from="Characters/CoatPlayer" to="." method="_on_CoatPlayer_on_attack_end"]
 [connection signal="on_move" from="Characters/CoatPlayer" to="." method="_on_CoatPlayer_on_move"]
 [connection signal="animation_finished" from="Smoke" to="." method="_on_Smoke_animation_finished"]
 [connection signal="area_entered" from="PickItems" to="PickItems" method="_on_PickItems_area_entered"]
