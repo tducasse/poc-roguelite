@@ -35,7 +35,7 @@ func _ready():
 
 func enable():
 	visible = true
-	hurtbox_shape.disabled = false
+	hurtbox_shape.set_deferred("disabled", false)
 
 func disable():
 	visible = false
