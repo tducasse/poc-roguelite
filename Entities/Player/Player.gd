@@ -42,10 +42,10 @@ func _ready():
 	if playerStatsConnection != OK:
 		print_debug("Connection to no_health signal failed : " + playerStatsConnection)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	match state:
 		states.MOVE:
-			move_state(delta)
+			move_state()
 		states.ATTACK:
 			attack_state()
 		states.TRANSFORM1:
@@ -54,7 +54,7 @@ func _physics_process(delta):
 			transform2_state()
 
 
-func move_state(delta):
+func move_state():
 	var input_vector = Vector2(
 		Input.get_action_strength(UI_RIGHT) - Input.get_action_strength(UI_LEFT),
 		Input.get_action_strength(UI_DOWN) - Input.get_action_strength(UI_UP)
