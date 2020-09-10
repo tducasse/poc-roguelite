@@ -18,6 +18,7 @@ const ATTACK_STATE = "Attack"
 onready var anim_tree := $AnimationTree
 onready var anim_state = anim_tree.get(PLAYBACK_NAME)
 onready var psy_hitbox_shape := $PsyHitbox/CollisionShape2D
+onready var hurtbox_shape := $Hurtbox/CollisionShape2D
 
 
 signal on_move(value)
@@ -34,10 +35,11 @@ func _ready():
 
 func enable():
 	visible = true
-
+	hurtbox_shape.disabled = false
 
 func disable():
 	visible = false
+	hurtbox_shape.set_deferred("disabled", true)
 
 
 func back_to_idle():
@@ -55,10 +57,15 @@ func receive_input_vector(input_vector):
 		anim_tree.set(WALK_BLEND_POS, input_vector)
 		anim_tree.set(ATTACK_BLEND_POS, input_vector)
 		anim_state.travel(WALK_STATE)
-	
+	else :
+		anim_state.travel(IDLE_STATE)
 	if not visible:
 	# no need to do anything else if it's not the active character
 		return
 	
 	var velocity = input_vector * SPEED
 	emit_signal("on_move", velocity)
+
+
+func _on_Hurtbox_area_entered(area):
+	PlayerStats.health -= area.damage

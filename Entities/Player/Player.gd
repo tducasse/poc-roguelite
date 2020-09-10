@@ -38,7 +38,9 @@ func _ready():
 	active_character = characters[DEFAULT_CHAR_INDEX]
 	active_character.enable()
 	smoke.visible = false
-
+	var playerStatsConnection = PlayerStats.connect("no_health", self, "_on_stats_no_health")
+	if playerStatsConnection != OK:
+		print_debug("Connection to no_health signal failed : " + playerStatsConnection)
 
 func _physics_process(delta):
 	match state:
@@ -58,13 +60,10 @@ func move_state(delta):
 		Input.get_action_strength(UI_DOWN) - Input.get_action_strength(UI_UP)
 	).normalized()
 	
-	if input_vector != Vector2.ZERO:
-		# send the vector to every character, so that they can stay in sync
-		# even if they are not currently active
-		for character in characters:
-			character.receive_input_vector(input_vector)
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO, delta)
+	# send the vector to every character, so that they can stay in sync
+	# even if they are not currently active
+	for character in characters:
+		character.receive_input_vector(input_vector)
 		
 	if Input.is_action_just_pressed(ATTACK):
 		state = states.ATTACK
@@ -158,3 +157,7 @@ func _on_PickItems_pick_item(item_type, item_data):
 
 func _on_CoatPlayer_on_attack_end(_value):
 	state = states.MOVE
+
+
+func _on_stats_no_health():
+	queue_free()
