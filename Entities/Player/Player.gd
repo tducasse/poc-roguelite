@@ -152,7 +152,7 @@ func _on_PickItems_pick_item(item_type, item_data):
 			toggle_active_character(index)
 		"Item":
 			# TODO: actually implement this part + inventory
-			print('picked ', item_type, ' ', item_data['name'])
+			print_debug('picked ', item_type, ' ', item_data['name'])
 
 
 func _on_CoatPlayer_on_attack_end(_value):

@@ -14,6 +14,7 @@ func _ready():
 
 func set_health(value: int):
 	health = value
+	print_debug(health)
 	emit_signal("on_health_change", health)
 	if health <= 0:
 		emit_signal("no_health")
