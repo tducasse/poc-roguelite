@@ -124,6 +124,11 @@ func attack():
 		state = states.MOVE
 
 
+func get_tanking_power():
+	if active_character.has_method("get_tanking_power"):
+		return active_character.get_tanking_power()
+	return 1
+
 func get_type():
 	return "Player"
 
@@ -164,4 +169,4 @@ func _on_stats_no_health():
 
 
 func _on_Hurtbox_area_entered(area):
-	PlayerStats.health -= area.damage
+	PlayerStats.health -= area.damage * get_tanking_power()

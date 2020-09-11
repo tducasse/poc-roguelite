@@ -7,7 +7,7 @@ const SPEED = 140
 const PLAYBACK_NAME = "parameters/playback"
 const DEFAULT_BLEND_POS = "parameters/Default/blend_position"
 const DEFAULT_STATE = "Default"
-
+const TANKING_POWER = 0
 
 # onready
 onready var anim_tree := $AnimationTree
@@ -44,4 +44,7 @@ func receive_input_vector(input_vector):
 		
 	var velocity = input_vector * SPEED
 	emit_signal("on_move", velocity)
+	
 
+func get_tanking_power():
+	return TANKING_POWER

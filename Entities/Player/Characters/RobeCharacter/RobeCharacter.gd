@@ -12,6 +12,7 @@ const ATTACK_BLEND_POS = "parameters/Attack/blend_position"
 const IDLE_STATE = "Idle"
 const WALK_STATE = "Walk"
 const ATTACK_STATE = "Attack"
+const TANKING_POWER = 1
 
 
 # onready
@@ -62,3 +63,7 @@ func receive_input_vector(input_vector):
 	
 	var velocity = input_vector * SPEED
 	emit_signal("on_move", velocity)
+
+
+func get_tanking_power():
+	return TANKING_POWER
