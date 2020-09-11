@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Entities/Player/Characters/RobeCharacter/RobeCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Utils/Collisions/Hurtbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/Player/PlayerCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Entities/Player/Characters/NakedPlayer/NakedPlayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=5]
@@ -36,6 +37,10 @@ animations = [ {
 
 [sub_resource type="CircleShape2D" id=7]
 
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 6.26175
+height = 5.44263
+
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
@@ -43,6 +48,7 @@ collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -3 )
 scale = Vector2( 1, 0.2 )
 shape = SubResource( 1 )
@@ -61,22 +67,36 @@ position = Vector2( 0, -12 )
 frames = SubResource( 6 )
 
 [node name="PickItems" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 32
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickItems"]
+visible = false
 position = Vector2( 0, -12 )
 shape = SubResource( 7 )
 
 [node name="CameraHolder" type="RemoteTransform2D" parent="."]
+visible = false
 remote_path = NodePath("../PlayerCamera")
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 0, 0 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -9.79269 )
+shape = SubResource( 8 )
 [connection signal="on_move" from="Characters/NakedPlayer" to="." method="_on_NakedPlayer_on_move"]
 [connection signal="on_attack_end" from="Characters/CoatPlayer" to="." method="_on_CoatPlayer_on_attack_end"]
 [connection signal="on_move" from="Characters/CoatPlayer" to="." method="_on_CoatPlayer_on_move"]
 [connection signal="animation_finished" from="Smoke" to="." method="_on_Smoke_animation_finished"]
 [connection signal="area_entered" from="PickItems" to="PickItems" method="_on_PickItems_area_entered"]
 [connection signal="pick_item" from="PickItems" to="." method="_on_PickItems_pick_item"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="Hurtbox"]

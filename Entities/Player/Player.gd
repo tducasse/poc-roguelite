@@ -161,3 +161,7 @@ func _on_CoatPlayer_on_attack_end(_value):
 
 func _on_stats_no_health():
 	queue_free()
+
+
+func _on_Hurtbox_area_entered(area):
+	PlayerStats.health -= area.damage
