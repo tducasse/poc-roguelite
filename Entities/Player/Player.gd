@@ -38,9 +38,9 @@ func _ready():
 	active_character = characters[DEFAULT_CHAR_INDEX]
 	active_character.enable()
 	smoke.visible = false
-	var playerStatsConnection = PlayerStats.connect("no_health", self, "_on_stats_no_health")
-	if playerStatsConnection != OK:
-		print_debug("Connection to no_health signal failed : " + playerStatsConnection)
+	var player_stats_connection = PlayerStats.connect("no_health", self, "_on_stats_no_health")
+	if player_stats_connection != OK:
+		print_debug("Connection to no_health signal failed : " + player_stats_connection)
 
 func _physics_process(_delta):
 	match state:
